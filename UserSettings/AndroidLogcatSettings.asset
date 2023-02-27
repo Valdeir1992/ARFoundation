@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "0053256622",
         "name": "com.multiversodesign.ARFoundation",
-        "processId": 21886,
+        "processId": 15741,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -18,6 +18,24 @@
             "deviceId": "0053256622",
             "name": "com.multiversodesign.ARFoundation",
             "processId": 21886,
+            "exited": false
+        },
+        {
+            "deviceId": "0053256622",
+            "name": "com.multiversodesign.ARFoundation",
+            "processId": 11967,
+            "exited": false
+        },
+        {
+            "deviceId": "0053256622",
+            "name": "com.multiversodesign.ARFoundation",
+            "processId": 14754,
+            "exited": false
+        },
+        {
+            "deviceId": "0053256622",
+            "name": "com.multiversodesign.ARFoundation",
+            "processId": 15741,
             "exited": false
         }
     ],
