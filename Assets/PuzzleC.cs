@@ -5,7 +5,7 @@ using UnityEngine.XR.ARFoundation;
 
 public class PuzzleC : MonoBehaviour
 {
-
+    private GameObject _trackedObject;
     [SerializeField] private GameObject _prefabObject;
     private void OnEnable()
     {
@@ -30,19 +30,18 @@ public class PuzzleC : MonoBehaviour
     {
         foreach (var AddedImage in eventArgs.added)
         {
-            Instantiate(_prefabObject,Vector3.zero,Quaternion.identity, AddedImage.transform);
-            Debug.Log(AddedImage.gameObject.transform.GetChild(0).gameObject.transform.position);
+            _trackedObject = Instantiate(_prefabObject,Vector3.zero,Quaternion.identity,AddedImage.transform); 
         }
 
         foreach (var updatedImage in eventArgs.updated)
         {
             if (updatedImage.trackingState != UnityEngine.XR.ARSubsystems.TrackingState.Tracking)
-            {
-                updatedImage.gameObject.transform.GetChild(0).gameObject.SetActive(false); 
+            { 
+                _trackedObject.SetActive(false);
             }
             else
-            { 
-                updatedImage.gameObject.transform.GetChild(0).gameObject.SetActive(true); 
+            {
+                _trackedObject.SetActive(true); 
             }
         } 
     }
