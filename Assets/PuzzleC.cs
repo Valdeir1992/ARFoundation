@@ -9,12 +9,25 @@ public class PuzzleC : MonoBehaviour
     [SerializeField] private GameObject _prefabObject;
     private void OnEnable()
     {
-        ARTrackedImageManager manager = FindObjectOfType<ARTrackedImageManager>();
-
-        if(manager != null)
+        try
+        { 
+            ARTrackedImageManager manager = FindObjectOfType<ARTrackedImageManager>();
+            if (manager != null)
+            {
+                manager.trackedImagesChanged += OnChangeMission;
+                Debug.LogError("Success find");
+            }
+            else
+            {
+                Debug.LogError("Erro manager");
+            }
+        }
+        catch
         {
-            manager.trackedImagesChanged += OnChangeMission;
-        } 
+            Debug.LogError("Erro Find");
+        }
+
+        
     }
 
     private void OnDisable()
@@ -30,19 +43,37 @@ public class PuzzleC : MonoBehaviour
     {
         foreach (var AddedImage in eventArgs.added)
         {
-            _trackedObject = Instantiate(_prefabObject,Vector3.zero,Quaternion.identity,AddedImage.transform); 
-        }
+            try
+            {
+                _trackedObject = Instantiate(_prefabObject, Vector3.zero, Quaternion.identity, AddedImage.transform);
+                Debug.LogError("success instantiate");
+            }
+            catch
+            {
+                Debug.LogError("Fail instantiate");
+            }
+         }
 
         foreach (var updatedImage in eventArgs.updated)
         {
-            if (updatedImage.trackingState != UnityEngine.XR.ARSubsystems.TrackingState.Tracking)
-            { 
-                _trackedObject.SetActive(false);
-            }
-            else
+            try
             {
-                _trackedObject.SetActive(true); 
+
+                if (updatedImage.trackingState != UnityEngine.XR.ARSubsystems.TrackingState.Tracking)
+                {
+                    _trackedObject.SetActive(false);
+                    Debug.LogError("Success Desactive"); 
+                }
+                else
+                {
+                    _trackedObject.SetActive(true);
+                }
+                Debug.LogError("Success Update");
             }
+            catch
+            {
+                Debug.LogError("Fail Update");
+            } 
         } 
     }
 }
