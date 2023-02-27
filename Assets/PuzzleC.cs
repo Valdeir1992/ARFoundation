@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
+using TMPro;
 
 public class PuzzleC : MonoBehaviour
 {
     private GameObject _trackedObject;
+    [SerializeField] private TextMeshProUGUI _status;
     [SerializeField] private GameObject _prefabObject;
     private void OnEnable()
     {
@@ -56,24 +58,7 @@ public class PuzzleC : MonoBehaviour
 
         foreach (var updatedImage in eventArgs.updated)
         {
-            try
-            {
-
-                if (updatedImage.trackingState != UnityEngine.XR.ARSubsystems.TrackingState.Tracking)
-                {
-                    _trackedObject.SetActive(false);
-                    Debug.LogError("Success Desactive"); 
-                }
-                else
-                {
-                    _trackedObject.SetActive(true);
-                }
-                Debug.LogError("Success Update");
-            }
-            catch
-            {
-                Debug.LogError("Fail Update");
-            } 
+            _status.text = $"Status: {updatedImage.trackingState} {Time.time}";
         } 
     }
 }
