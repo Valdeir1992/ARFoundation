@@ -44,11 +44,6 @@ public class PuzzleC : MonoBehaviour
             { 
                 updatedImage.gameObject.transform.GetChild(0).gameObject.SetActive(true); 
             }
-        }
-        foreach (var updatedImage in eventArgs.removed)
-        {
-            updatedImage.gameObject.transform.GetChild(0).gameObject.SetActive(false);
-        }
-
+        } 
     }
 }
